@@ -2,8 +2,10 @@ package B_IntroToJava;
 
 import java.util.Scanner;
 
-public class StringManipulationChallenge {
-
+public class StringManipulationChallengeLab2 {
+    //Can you see this
+    // test comment
+    // test comment
     public static void main(String[] args) {
         /*
          * This main method is ready for you to test your implementations.
@@ -13,7 +15,6 @@ public class StringManipulationChallenge {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("=== String Manipulation Challenge ===");
-
         // 1) Upper / Lower / Trim
         System.out.print("Enter some text: ");
         String input = sc.nextLine();
@@ -84,8 +85,8 @@ public class StringManipulationChallenge {
      * @return upper-cased string (null if input is null)
      */
     public static String stringToUpper(String myString) { // the method itself has 'parameters'
-        // TODO: Implement this method
-        return null;
+        if (myString == null) return null;
+        return myString.toUpperCase();
     }
 
     /**
@@ -96,8 +97,9 @@ public class StringManipulationChallenge {
      * @return lower-cased string (null if input is null)
      */
     public static String stringToLower(String usersString) {
-        // TODO: Implement this method
-        return null;
+        if (usersString == null) return null;
+        String lowerCaseString = usersString.toLowerCase();
+        return lowerCaseString;
     }
 
     /**
@@ -110,8 +112,8 @@ public class StringManipulationChallenge {
      * @return trimmed string (null if input is null)
      */
     public static String stringTrim(String usersStringWithWhiteSpace) {
-        // TODO: Implement this method
-        return null;
+        if (usersStringWithWhiteSpace == null) return null;
+        return usersStringWithWhiteSpace.trim();
     }
 
     /**
@@ -126,9 +128,14 @@ public class StringManipulationChallenge {
      * @throws IllegalArgumentException if arguments are invalid
      */
     public static String stringSubstring(String x, int firstElement, int lengthOfSubstring) {
-        // TODO: Implement this method
-        // Suggested: validate null input, non-negative indices, and bounds
-        return null;
+        if (x == null) throw new IllegalArgumentException("input string is null");
+        if (firstElement < 0) throw new IllegalArgumentException("start index must be >= 0");
+        if (lengthOfSubstring < 0) throw new IllegalArgumentException("length must be >= 0");
+        if (firstElement > x.length()) throw new IllegalArgumentException("start index beyond string length");
+        if (firstElement + lengthOfSubstring > x.length())
+            throw new IllegalArgumentException("start+length exceeds string bounds");
+        // substring(beginIndex, endIndexExclusive)
+        return x.substring(firstElement, firstElement + lengthOfSubstring);
     }
 
     /**
@@ -142,8 +149,8 @@ public class StringManipulationChallenge {
      * @return index of the char (or -1 if not found or input is null)
      */
     public static int searchChar(String userInputString, char charUserWants) {
-        // TODO: Implement this method
-        return -1;
+        if (userInputString == null) return -1;
+        return userInputString.indexOf(charUserWants);
     }
 
     /**
@@ -157,8 +164,12 @@ public class StringManipulationChallenge {
      * @return concatenated "first last"
      */
     public static String concatNames(String fName, String lName) {
-        // TODO: Implement this method
-        return null;
+        // Be forgiving with nulls: treat null as empty, then trim the final result.
+        String left = (fName == null) ? "" : fName.trim();
+        String right = (lName == null) ? "" : lName.trim();
+        String combined = (left + " " + right).trim();
+        // If both were null/empty, return empty string to avoid returning null elsewhere in program flow.
+        return combined;
+
     }
 }
-//family
